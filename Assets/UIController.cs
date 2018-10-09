@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,8 +15,12 @@ public class UIController : MonoBehaviour {
 
     [SerializeField]
     List<minigame> minigameDoneList = new List<minigame>();
+
+    TimerScript timerScript;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+	    timerScript = GetComponentInChildren<TimerScript>();
         miniGamesObject = Resources.LoadAll("Minigames");
         MinigameRandomizer();
     }
@@ -38,7 +42,7 @@ public class UIController : MonoBehaviour {
         minigameTime.text = "Time: " + currentMinigame.time.ToString();
     }
 
-    void MinigameRandomizer()
+    public void MinigameRandomizer()
     {
         int randomNumber;
         int i = 0;
@@ -61,6 +65,7 @@ public class UIController : MonoBehaviour {
                 Debug.Log("voegtoe");
                 currentMinigame = (minigame)miniGamesObject[randomNumber];
                 minigameDoneList.Add(currentMinigame);
+                timerScript.durationTime = currentMinigame.time;
                 break;
             }
 
