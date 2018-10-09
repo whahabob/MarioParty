@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         miniGamesObject = Resources.LoadAll("Minigames");
+        MinigameRandomizer();
     }
 	
 	// Update is called once per frame
@@ -40,10 +41,11 @@ public class UIController : MonoBehaviour {
     void MinigameRandomizer()
     {
         int randomNumber;
-
+        int i = 0;
         while (true)
         {
-            randomNumber = Random.Range(0, miniGamesObject.Length-1);
+            randomNumber = Random.Range(0, miniGamesObject.Length);
+            Debug.Log(randomNumber);
             bool minigameDone = false;
             foreach (minigame m in minigameDoneList)
             {
@@ -51,6 +53,7 @@ public class UIController : MonoBehaviour {
                 {
                     Debug.Log("zelfde");
                     minigameDone = true;
+                    break;
                 }
             }
             if(!minigameDone)
@@ -66,6 +69,13 @@ public class UIController : MonoBehaviour {
                 Debug.Log("count: " + minigameDoneList.Count + "lenght: " + miniGamesObject.Length);
                 break;
             }
+            if (i > 5)
+            {
+                break;
+            }
+                
+
+            i++;
         }
     }
 }
